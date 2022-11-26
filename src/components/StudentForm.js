@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import clsx from "clsx";
 
 const initialFormData = {
   id: "",
@@ -41,7 +40,7 @@ export class StudentForm extends Component {
     try {
       await axios({
         method: "POST",
-        url: "https://6340d40ad1fcddf69cbe2698.mockapi.io/student",
+        url: process.env.REACT_APP_API_URL + "/student",
         data: this.state.formData,
       });
 

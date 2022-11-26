@@ -4,17 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import studentReducer from "./reducers/Student";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   students: studentReducer,
 });
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

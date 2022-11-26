@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { fetchStudentsDetailAction } from "../reducers/action";
 
 export class StudentList extends Component {
   handleDelete = async (id) => {
@@ -16,18 +17,7 @@ export class StudentList extends Component {
   };
 
   handleEdit = async (id) => {
-    try {
-      const res = await axios({
-        method: "GET",
-        url: `https://6340d40ad1fcddf69cbe2698.mockapi.io/student/${id}`,
-      });
-      this.props.dispatch({
-        type: "student/setSelectedStudent",
-        payload: res.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.dispatch(fetchStudentsDetailAction(id));
   };
 
   handleSearch = async (e) => {
